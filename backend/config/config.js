@@ -1,12 +1,11 @@
 require('dotenv').config();
 
 const config = {
-  username: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'Secure123',
-  database: process.env.MYSQL_DATABASE || 'BotTelegram',
-  host: process.env.MYSQL_HOST||'127.0.0.1',
+  username: process.env.MYSQL_ADDON_USER || 'root',
+  password: process.env.MYSQL_ADDON_PASSWORD || 'Secure123',
+  database: process.env.MYSQL_ADDON_DB || 'BotTelegram',
+  host: process.env.MYSQL_ADDON_HOST||'127.0.0.1',
   dialect: 'mysql',
-
 };
 
 module.exports = {
