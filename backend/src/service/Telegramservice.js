@@ -1,6 +1,7 @@
 const messageModel = require('../../models/');
 const { Telegraf } = require('telegraf');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const receiveMessage = async (userId, message, socket) => {
   try {
 
