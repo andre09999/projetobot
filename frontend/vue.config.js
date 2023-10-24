@@ -4,7 +4,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     proxy: {
-      '/api': {
+      '/': {
         target: 'https://projectbot-5xtl.onrender.com/',
         changeOrigin: true,
         pathRewrite: {
