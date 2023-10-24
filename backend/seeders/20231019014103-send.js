@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('send_messages', [
+    return queryInterface.bulkInsert('SendMessages', [
       {
         id: '',
         message: ''
