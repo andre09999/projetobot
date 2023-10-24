@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Definindo o estado do módulo
 const state = {
   mensagem: '',

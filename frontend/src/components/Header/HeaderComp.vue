@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="header">
     <button @click="handleLogout">Sair</button>

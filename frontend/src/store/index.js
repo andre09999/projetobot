@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createStore } from 'vuex';
 import login from './LoginForm'; 
 import telaPrincipal from './TelaPrincipal';

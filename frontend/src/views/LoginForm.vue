@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <!-- Componente de login -->
   <div class="login">

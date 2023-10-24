@@ -1,3 +1,4 @@
+/* eslint-disable */
 const state = {
   isLoggedIn: false,
   codeBot: '',

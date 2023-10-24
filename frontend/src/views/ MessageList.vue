@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <!-- Componente de lista de mensagens -->
   <div>

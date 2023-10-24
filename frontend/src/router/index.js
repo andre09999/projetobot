@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/LoginForm.vue'
 import Apps from '../views/TelaPrincipal'

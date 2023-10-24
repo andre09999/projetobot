@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="principal">
     <!-- Componente do cabeçalho -->

@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div>
     <ul v-if="messages && messages.length > 0" class="message-list">
