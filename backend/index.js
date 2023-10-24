@@ -13,13 +13,13 @@ const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "https://projetobot-frontend.vercel.app/",
+    origin: "https://projetobot-frontend.vercel.app",
     methods: ["GET", "POST"]
   }
 });
 
 app.use(cors({
-  origin: 'https://projetobot-frontend.vercel.app/',
+  origin: 'https://projetobot-frontend.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
