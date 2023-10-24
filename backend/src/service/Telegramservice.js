@@ -9,7 +9,7 @@ const receiveMessage = async (userId, message, socket) => {
       id: userId,
       message: message
     };
-    const newSendMessage = await messageModel.SendMessage.create(data);
+    const newSendMessage = await messageModel.SendMessages.create(data);
     await newSendMessage.save();
     socket.emit('new-message', { from: { first_name: userId }, text: message });
     return 'salvo';;
