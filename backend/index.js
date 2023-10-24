@@ -18,11 +18,8 @@ const io = socketIo(server, {
   }
 });
 
-app.use(cors({
-  origin: 'https://projetobot-frontend.vercel.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true
-}));
+app.use(cors());
+
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Request-Method', '*');
