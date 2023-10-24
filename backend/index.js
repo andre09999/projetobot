@@ -2,7 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const apiRoutes = require('./src/routes/apiRoutes');
 const TelegramBot = require('node-telegram-bot-api');
-const postgres = require('postgres');
+const { Client } = require('pg');
 const cors = require('cors');
 const http = require('http');
 const app = express();
@@ -21,7 +21,7 @@ const io = socketIo(server, {
 
 let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-const sql = postgres({
+const client = new Client({
   host: PGHOST,
   database: PGDATABASE,
   username: PGUSER,
@@ -32,6 +32,15 @@ const sql = postgres({
     options: `project=${ENDPOINT_ID}`,
   },
 });
+
+client.connect();
+
+client.query('SELECT NOW()', (err, res) => {
+  if (err) throw err;
+  console.log('Connected:', res.rows[0]);
+  client.end();
+});
+
 
 async function getPgVersion() {
   const result = await sql`select version()`;
