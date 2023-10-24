@@ -7,7 +7,7 @@ const http = require('http');
 const app = express();
 const socketIo = require('socket.io');
 const telegramService = require('./src/service/Telegramservice');
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN);
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
