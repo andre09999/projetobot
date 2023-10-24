@@ -33,7 +33,7 @@
     "sequelize": "^6.6.2",
     "socket.io": "^4.3.1",
     "socket.io-client": "^4.3.1",
-    "telegraf": "^1",
+    "telegraf": "^4.15.0",
     "telegram-node-bot": "^4.0.5"
   },
   "devDependencies": {

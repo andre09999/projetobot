@@ -21,7 +21,7 @@ const receiveMessage = async (userId, message, socket) => {
 const createSendMessage = async (data, chatId) => {
   try {
     
-      const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+      const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN )
       console.log('bot', bot)
       if(data.caption) {
         const msg = {
