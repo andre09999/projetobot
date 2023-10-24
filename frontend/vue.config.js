@@ -5,14 +5,14 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://projectbot-5xtl.onrender.com/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
       '/socket.io': {
-        target: 'http://localhost:3000',
+        target: 'https://projectbot-5xtl.onrender.com/',
         ws: true,
         changeOrigin: true
       }

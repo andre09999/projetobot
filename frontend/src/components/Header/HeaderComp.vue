@@ -20,7 +20,7 @@ export default {
         },
       };
 
-      axios.post('http://localhost:3000/exit', { code: codeBot, chatId: chatId }, config)
+      axios.post('https://projectbot-5xtl.onrender.com//exit', { code: codeBot, chatId: chatId }, config)
         .then(response => {
           console.log(response);
           this.$router.push('/');

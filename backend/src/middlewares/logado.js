@@ -2,7 +2,6 @@ const messageModel = require('../../models/');
 
 const checkLoginMiddleware = async (req, res, next) => {
   try {
-    console.log(messageModel.LoginStatuses.findByPk(1))
     const loginStatus = await messageModel.LoginStatuses.findByPk(1);
     if (loginStatus && loginStatus.isActive === false) {
       next();
