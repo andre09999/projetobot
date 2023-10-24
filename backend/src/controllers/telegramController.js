@@ -11,7 +11,7 @@ const sendMessage = async (req, res) => {
         const message = req.body.message;
         const chatId = req.body.chatId;
         const newSendMessage = await telegramService.createSendMessage(message, chatId);
-        return res.status(201).json({ message: 'sucesso' });
+        return res.status(201).json({ message: newSendMessage });
     } catch (error) {
         return res.status(403).json({ error: 'não deu certo' });
     }

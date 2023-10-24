@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
   bot.on('text', async (ctx) => {
     const messageText = ctx.text;
     const chatId = ctx.from?.first_name;
-    
+    console.log(ctx)
     telegramService.receiveMessage(chatId,messageText, socket);
     if(messageText=== '/start'){
       const banner = "Bem vindo(a)\n\n"
