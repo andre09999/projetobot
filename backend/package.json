@@ -5,7 +5,6 @@
   "main": "./index.js",
   "scripts": {
     "start": "npm run db:init && node ./index.js",
-    "vercel-build": "npm run db:init deploy",
     "dev": "npm run db:init && nodemon ./index.js",
     "db:init": "npx sequelize db:create && npm run db:migrate && npm run db:seed",
     "db:migrate": "npx sequelize-cli db:migrate",
