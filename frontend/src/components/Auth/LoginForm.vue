@@ -36,7 +36,7 @@ export default {
         },
       };
 
-      axios.post('https://projectbot-5xtl.onrender.com//login', { botCode: this.codeBot }, config)
+      axios.post('https://projectbot-5xtl.onrender.com/login', { botCode: this.codeBot }, config)
         .then(response => {
           if (response.status === 200) {
             this.$router.push('/app');

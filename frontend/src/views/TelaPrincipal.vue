@@ -45,7 +45,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('https://projectbot-5xtl.onrender.com//send', {
+        const response = await axios.post('https://projectbot-5xtl.onrender.com/send', {
           message: this.mensagem,
           code: codeBot,
           chatId: chatId
