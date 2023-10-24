@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('SendMessages', {
+    await queryInterface.createTable('send_messages', {
       id: {
         allowNull: false,
         type: Sequelize.STRING
@@ -23,6 +23,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('SendMessages');
+    await queryInterface.dropTable('send_messages');
   }
 };

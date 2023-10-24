@@ -3,13 +3,13 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class SendMessage extends Model {
+  class send_messages extends Model {
     static associate(models) {
 
     }
   }
 
-  SendMessage.init({
+  send_messages.init({
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     message: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'SendMessage',
+    modelName: 'send_messages',
     underscored: true,
   });
 
-  return SendMessage;
+  return send_messages;
 };
