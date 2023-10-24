@@ -9,7 +9,7 @@ const receiveMessage = async (userId, message, socket) => {
       id: userId,
       message: message
     };
-    const newSendMessage = await messageModel.SendMessages.create(data);
+    const newSendMessage = await messageModel.SendMessage.create(data);
     await newSendMessage.save();
     socket.emit('new-message', { from: { first_name: userId }, text: message });
     return 'salvo';;
@@ -29,7 +29,7 @@ const createSendMessage = async (data, chatId) => {
           message: data.caption
         };
         const image = 'https://media0.giphy.com/media/sxkP02MRihq3uJDzW8/giphy.gif?cid=6c09b952grnip5s3ofdfoelgwzl8y4ckrrrkhbm407b5bddh&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s'
-        const newSendMessage = await messageModel.SendMessages.create(msg);   
+        const newSendMessage = await messageModel.SendMessage.create(msg);   
         await newSendMessage.save();
         
         bot.telegram.sendMessage(chatId, msg.message);
@@ -40,7 +40,7 @@ const createSendMessage = async (data, chatId) => {
           id: 'voce',
           message: data.caption || data
         };
-        const newSendMessage = await messageModel.SendMessages.create(msg);
+        const newSendMessage = await messageModel.SendMessage.create(msg);
         await newSendMessage.save();  
         bot.telegram.sendMessage(chatId, msg.message);
       }
