@@ -13,7 +13,7 @@ const receiveMessage = async (userId, message, socket) => {
     socket.emit('new-message', { from: { first_name: userId }, text: message });
     return 'salvo';;
   } catch (e) {
-    return null;
+    return e.message;
   }
 };
 
@@ -44,7 +44,7 @@ const createSendMessage = async (data, chatId) => {
       }
       return true;
     } catch (e) {
-      return null;
+      return e.message;
     }
   }
 
@@ -54,7 +54,7 @@ const login = async () => {
    await messageModel.LoginStatus.update({ is_active: true }, { where: { id: 1 } });
    return true
   } catch (e) {
-    return null
+    return e.message
   }
 }
 const logout = async () => {
@@ -64,7 +64,7 @@ const logout = async () => {
    return true;
   } catch (e) {
   
-    return null
+    return e.message
   }
 }
 
