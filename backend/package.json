@@ -1,20 +1,24 @@
 {
-  "name": "api-telegram",
+  "name": "telegram-bot-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "./index.js",
+  "description": "API para autenticação, mensageria e automações integradas ao Telegram.",
+  "main": "index.js",
   "scripts": {
-    "start": "npm run reset && node ./index.js",
-    "dev": "npm run db:init && nodemon ./index.js",
-    "db:init": "npx sequelize db:create && npm run db:migrate && npm run db:seed",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "db:seed": "npx sequelize-cli db:seed:all",
-    "reset": "npx sequelize-cli db:migrate:undo:all && npm run db:init",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "db:create": "sequelize-cli db:create",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:seed": "sequelize-cli db:seed:all",
+    "db:setup": "npm run db:create && npm run db:migrate && npm run db:seed",
+    "db:reset": "sequelize-cli db:migrate:undo:all && npm run db:setup",
+    "test": "node --test"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["telegram", "bot", "automation", "express", "sequelize"],
+  "author": "André Luis Ribeiro de Souza",
   "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "axios": "^0.23.0",
     "body-parser": "^1.19.0",
