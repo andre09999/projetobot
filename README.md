@@ -1,33 +1,86 @@
-# projetobot Monorepo
+# Bot Full Stack para Telegram
 
-Aplicação de Bot telegram
-Esta é uma aplicação de exemplo fullstack que permite o envio , recebimento de mensagens e interação com usuario de maneira automativa.
+Aplicação full stack para automação de interações pelo Telegram, com painel administrativo em Vue, API Node.js e persistência em MySQL.
 
-Pré-requisitos
-Certifique-se de ter os seguintes itens devidamente instalados em seu computador:
+## Arquitetura
 
-MySql
-Além disso, dependendo das implementações do backend e frontend, você pode precisar instalar software adicional. Consulte os READMEs correspondentes para obter mais informações.
+- **Front-end:** Vue 3, Vue Router, Vuex e Socket.IO Client
+- **Back-end:** Node.js, Express, Sequelize, JWT e integrações com Telegram
+- **Banco de dados:** MySQL 8
+- **Infraestrutura local:** Docker Compose
 
-Configuração do Banco de Dados
-Esta automatica quando rodar o backend
-Configuração do Backend
-Este projeto oferece implementação de backend, todas idênticas bem verificadas. Abra o repositorio e siga as instruções de configuração fornecidas nos respectivos READMEs:
+## Funcionalidades
 
+- autenticação de usuários;
+- envio e recebimento de mensagens;
+- integração com a API do Telegram;
+- comunicação em tempo real com Socket.IO;
+- separação entre interface, API e banco de dados;
+- ambiente local reproduzível com containers.
 
-Backend Node.js (backend-nodejs) com framework sequelize.
-apos ter instalado todos os recursos nescessarios
-rode o comando 
-nom run dev
+## Segurança
 
-Configuração do Frontend
-Frontend Vue (frontend-vue)
-rode o comando
+Nenhum segredo deve ser versionado. Antes de executar o projeto:
+
+1. copie `.env.example` para `.env`;
+2. preencha credenciais locais;
+3. gere um segredo JWT forte;
+4. use um token novo fornecido pelo BotFather.
+
+> Se um token ou senha já foi publicado no histórico do Git, revogue-o e gere outro. Remover o valor do arquivo atual não invalida credenciais antigas.
+
+## Executando com Docker
+
+Pré-requisitos: Docker e Docker Compose.
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+Serviços padrão:
+
+- painel: `http://localhost:8080`
+- API: `http://localhost:3000`
+- MySQL exposto localmente na porta `3307`
+
+## Executando sem Docker
+
+### API
+
+```bash
+cd backend
 npm install
-npm start
-para assim rodar a aplicação 
-Executando o Backend, Frontend
+npm run db:setup
+npm run dev
+```
 
+### Painel
 
-Créditos
-Este projeto foi criado como uma aplicação fullstack e não é destinado ao uso em produção. Ele serve como um recurso de processo seletivo.
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+## Estrutura
+
+```text
+.
+├── backend/             # API, modelos, migrações e serviços
+├── frontend/            # painel administrativo Vue
+├── docker-compose.yaml  # orquestração local
+└── .env.example         # referência de configuração
+```
+
+## Scripts da API
+
+- `npm start`: inicia a API sem alterar o banco;
+- `npm run dev`: inicia com recarga automática;
+- `npm run db:setup`: cria, migra e popula o banco;
+- `npm run db:reset`: recria o banco de forma explícita;
+- `npm test`: executa os testes nativos do Node.
+
+## Autor
+
+Desenvolvido por [André Luis](https://github.com/andre09999).
