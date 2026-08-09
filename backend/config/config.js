@@ -1,15 +1,26 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const config = {
-  username: process.env.MYSQL_ADDON_USER || 'root',
-  password: process.env.MYSQL_ADDON_PASSWORD || 'Secure123',
-  database: process.env.MYSQL_ADDON_DB || 'BotTelegram',
-  host: process.env.MYSQL_ADDON_HOST||'127.0.0.1',
-  dialect: 'mysql',
+const databaseConfig = {
+  username: process.env.MYSQL_ADDON_USER,
+  password: process.env.MYSQL_ADDON_PASSWORD,
+  database: process.env.MYSQL_ADDON_DB,
+  host: process.env.MYSQL_ADDON_HOST,
+  port: Number(process.env.MYSQL_ADDON_PORT || 3306),
+  dialect: "mysql",
+  logging: false,
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 };
 
 module.exports = {
-  development: config,
-  test: config,
-  production: config,
+  development: databaseConfig,
+  test: {
+    ...databaseConfig,
+    database: process.env.MYSQL_TEST_DB || `${process.env.MYSQL_ADDON_DB}_test`,
+  },
+  production: databaseConfig,
 };
