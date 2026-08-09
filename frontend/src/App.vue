@@ -4,21 +4,23 @@
 </template>
 
 <style>
-  *{
-    padding: 0;
-    margin: 0;
-  }
-  html{
-    height: 90vh;
-    background-color: darkgray;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(145deg, #edf8fd 0%, #f7f9fc 48%, #e8eef6 100%);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 #app {
+  min-height: 100vh;
   text-align: center;
 }
-input{
-  border-radius: 10px;
-  text-align: center;
-}
-
-
 </style>

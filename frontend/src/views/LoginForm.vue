@@ -1,6 +1,5 @@
 /* eslint-disable */
 <template>
-  <!-- Componente de login -->
   <div class="login">
     <Login />
   </div>
@@ -17,8 +16,7 @@ export default {
 </script>
 
 <style scoped>
-/* Estilo do componente de login */
 .login {
-  margin-top: 350px;
+  min-height: 100vh;
 }
 </style>

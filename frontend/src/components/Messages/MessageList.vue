@@ -1,28 +1,32 @@
 /* eslint-disable */
 <template>
-  <div>
+  <section class="messages-panel" aria-label="Mensagens da conversa">
     <ul v-if="messages && messages.length > 0" class="message-list">
-      <li v-for="(message, index) in messages" :key="index" :class="isSentMessage(message) ? 'sent-message' : 'left'">
-        <strong v-if="isSentMessage(message)" >{{ message.text }} : {{ message.from.first_name }}</strong>
-        <strong v-else>{{ message.from.first_name }} :  {{ message.text }}</strong>
+      <li
+        v-for="(message, index) in messages"
+        :key="index"
+        :class="isSentMessage(message) ? 'sent-message' : 'received-message'"
+      >
+        <span class="sender">{{ message.from.first_name }}</span>
+        <span>{{ message.text }}</span>
       </li>
     </ul>
-    <div v-else class="message-list2">
-      <p class="para">Não há mensagens disponíveis.</p>
+    <div v-else class="empty-state">
+      <p>Nenhuma mensagem disponível.</p>
+      <small>As novas mensagens aparecerão aqui.</small>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
 import io from 'socket.io-client';
 
-const socket = io('https://projectbot-5xtl.onrender.com/');
-
 export default {
   data() {
     return {
       novaMensagem: '',
+      socket: null,
     };
   },
   computed: {
@@ -32,7 +36,7 @@ export default {
     ...mapMutations('messageList', ['ADD_SENT_MESSAGE', 'ADD_RECEIVED_MESSAGE']),
     isSentMessage(message) {
       const senderName = message.from && message.from.first_name;
-      return senderName !== 'Você';
+      return senderName === 'Você';
     },
     enviarMensagem() {
       const novaMensagem = {
@@ -40,54 +44,89 @@ export default {
         text: this.novaMensagem
       };
       this.ADD_SENT_MESSAGE(novaMensagem);
-      socket.emit('send-message', { message: novaMensagem });
+      if (this.socket) {
+        this.socket.emit('send-message', { message: novaMensagem });
+      }
       this.novaMensagem = '';
     },
   },
   created() {
-    socket.on('new-message', (data) => {
+    if (sessionStorage.getItem('demoMode') === 'true') return;
+
+    this.socket = io('https://projectbot-5xtl.onrender.com/');
+    this.socket.on('new-message', (data) => {
       this.ADD_RECEIVED_MESSAGE(data); 
     });
+  },
+  beforeUnmount() {
+    if (this.socket) this.socket.disconnect();
   },
 };
 </script>
 
 <style scoped>
-.message-list {
-  margin: auto;
-  border: 1px solid black;
-  height: 450px;
-  width: 500px;
-  overflow-y: auto;
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
+.messages-panel {
+  overflow: hidden;
+  border: 1px solid #dce3ee;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
 }
 
-.message-list2 {
-  margin: auto;
-  border: 1px solid black;
-  height: 450px;
-  width: 500px;
+.message-list {
+  height: 430px;
+  margin: 0;
+  padding: 22px;
   overflow-y: auto;
-  background-color: white;
-  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.message-list li {
+  width: fit-content;
+  max-width: min(78%, 560px);
+  padding: 10px 13px;
+  border-radius: 12px;
+  line-height: 1.45;
+  text-align: left;
+  word-break: break-word;
 }
 
 .sent-message {
-  text-align: right;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  align-self: flex-end;
+  border-bottom-right-radius: 3px !important;
+  background: #229ed9;
+  color: #ffffff;
 }
 
-.left {
-  text-align: left;
-  margin-left: 30px;
-  margin-bottom: 10px;
+.received-message {
+  align-self: flex-start;
+  border-bottom-left-radius: 3px !important;
+  background: #eef2f6;
+  color: #263247;
 }
 
-.para {
-  margin-top: 200px;
+.sender {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  opacity: 0.76;
+}
+
+.empty-state {
+  height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #657084;
+}
+
+.empty-state p {
+  margin: 0 0 4px;
+  font-weight: 700;
 }
 </style>

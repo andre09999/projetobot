@@ -2,11 +2,15 @@
 const state = {
   isLoggedIn: false,
   codeBot: '',
+  botId: '',
 };
 
 const mutations = {
   SET_CODE_BOT(state, codeBot) {
     state.codeBot = codeBot;
+  },
+  SET_BOT_ID(state, botId) {
+    state.botId = botId;
   },
   SET_LOGGED_IN(state, loggedIn) {
     state.isLoggedIn = loggedIn;
