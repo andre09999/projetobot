@@ -9,18 +9,22 @@ services:
       backend:
         condition: service_started
     volumes:
-      - ./frontend/src:/frontend/src
+      - ./frontend/src:/app/src
 
   backend:
     build:
       context: ./backend
     container_name: telegram-bot-api
     restart: unless-stopped
-    env_file:
-      - .env
     environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
       MYSQL_ADDON_HOST: database
+      MYSQL_ADDON_DB: ${MYSQL_ADDON_DB:-BotTelegram}
+      MYSQL_ADDON_USER: ${MYSQL_ADDON_USER:-root}
       MYSQL_ADDON_PORT: 3306
+      MYSQL_ADDON_PASSWORD: ${MYSQL_ADDON_PASSWORD}
+      PORT: 3000
     ports:
       - "${API_PORT:-3000}:3000"
     depends_on:
